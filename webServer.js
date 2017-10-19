@@ -21,9 +21,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use((req, res, next) => {
-    res.render('maintenance.hbs');
-});
+// app.use((req, res, next) => {
+//     res.render('maintenance.hbs');
+// });
+//for when site needs to be down
 
 app.use(express.static(__dirname + '/public'));
 
@@ -50,6 +51,13 @@ app.get('/about', (req, res) => {
 
 app.get('/bad', (req, res) => {
     res.send({errorMessage: "you dun effed up"});
+});
+
+app.get('/projects', (req, res) => {
+    res.render('projects.hbs', {
+        pageTitle: 'Projects',
+        link: 'https://github.com/austindoesstuff'
+    });
 });
 
 app.listen(port, () => {
